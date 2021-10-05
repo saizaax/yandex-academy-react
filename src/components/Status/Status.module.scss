@@ -1,0 +1,52 @@
+@import "../../colors.scss";
+
+.status {
+  display: flex;
+  column-gap: 4px;
+  row-gap: 8px;
+  flex-wrap: wrap;
+
+  h5 {
+    font-weight: 500;
+    font-size: 18px;
+    line-height: 20px;
+    margin: 0;
+  }
+
+  p {
+    font-size: 15px;
+    line-height: 20px;
+    margin: 0;
+  }
+
+  @media screen and (max-width: 768px) {
+    h5 {
+      font-size: 16px;
+      line-height: 16px;
+    }
+  }
+}
+
+.success {
+  @extend .status;
+
+  h5 {
+    color: $status-success;
+  }
+}
+
+.warning {
+  @extend .status;
+
+  h5 {
+    color: $status-warning;
+  }
+}
+
+.error {
+  @extend .status;
+
+  h5 {
+    color: $status-error;
+  }
+}

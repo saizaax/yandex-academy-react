@@ -1,0 +1,39 @@
+@import "../../colors.scss";
+
+.footer {
+  padding: 8px 100px;
+  width: 100%;
+  background: $footer-primary;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  row-gap: 8px;
+
+  .links {
+    display: flex;
+    column-gap: 12px;
+
+    a {
+      color: $footer-link;
+      font-size: 13px;
+      line-height: 16px;
+      text-decoration: none;
+      
+      &:hover {
+        color: $footer-link-hover;
+      }
+    }
+  }
+
+  p {
+    margin: 0;
+    font-size: 13px;
+    line-height: 18px;
+    color: $footer-link;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 12px 16px;
+  }
+}

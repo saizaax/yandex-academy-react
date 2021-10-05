@@ -1,0 +1,102 @@
+@import "../../colors.scss";
+
+/** variables */
+$button-border-size: 2px;
+
+/** regular buttons */
+.button-base {
+  color: $primary-black;
+  font-size: 13px;
+  line-height: 36px;
+  padding: 0 20px;
+  border-radius: 4px;
+  border: none;
+  display: flex;
+  align-items: center;
+  column-gap: 5px;
+  min-width: 80px;
+}
+
+.primary {
+  @extend .button-base;
+
+  background: $button-primary;
+  border: $button-border-size solid $button-primary;
+
+  &:hover {
+    background: $button-primary-hover;
+    border-color: $button-primary-hover;
+  }
+
+  &:focus {
+    background: $button-primary-focus;
+    border-color: $button-border-primary-focus;
+  }
+}
+
+.secondary {
+  @extend .button-base;
+
+  background: $button-secondary;
+  border: $button-border-size solid $button-secondary;
+
+  &:hover {
+    background: $button-secondary-hover;
+    border-color: $button-secondary-hover;
+  }
+
+  &:focus {
+    background: $button-secondary-focus;
+    border-color: $button-border-secondary-focus;
+  }
+}
+
+.disabled {
+  @extend .button-base;
+
+  background: $button-disabled;
+  color: $button-text-disabled;
+  border: $button-border-size solid $button-disabled;
+}
+
+.transparent {
+  @extend .button-base;
+
+  background: transparent;
+  border: 1px solid $button-transparent-border;
+
+  &:hover {
+    border-color: $button-transparent-border-hover;
+  }
+
+  &:focus {
+    border-color: $button-transparent-border-focus;
+  }
+}
+
+/** buttons with icon */
+.icon-button {
+  @extend .secondary;
+
+  min-width: fit-content;
+  line-height: 28px;
+  padding: 0 8px;
+}
+
+.icon-regular {
+  @extend .icon-button;
+
+  @media screen and (max-width: 768px) {
+    font-size: 0;
+    column-gap: 0;
+    height: 32px;
+    width: 32px;
+    justify-content: center;
+  }
+}
+
+.icon-small {
+  @extend .icon-button;
+  height: 32px;
+  width: 32px;
+}

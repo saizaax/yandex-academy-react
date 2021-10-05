@@ -1,0 +1,49 @@
+/** primary-colors */
+$primary-black: #000000;
+$primary-white: #FFFFFF;
+$primary-red: #FF3333;
+
+/** button */
+$button-primary: #FFCC00;
+$button-secondary: #E6E6E6;
+$button-transparent-border: rgba(0, 0, 0, 0.2);
+
+/** button hover */
+$button-primary-hover: #F2C200;
+$button-secondary-hover: #DBDBDB;
+$button-transparent-border-hover: rgba(0, 0, 0, 0.3);
+
+/** button focus */
+$button-primary-focus: #FFCC00;
+$button-border-primary-focus: #B38F00;
+$button-secondary-focus: #E6E6E6;
+$button-border-secondary-focus: #B3B3B3;
+$button-transparent-border-focus: rgba(0, 0, 0, 0.4);
+
+/** button disabled */
+$button-disabled: #F2F2F2;
+$button-text-disabled: #7F7F7F;
+
+/** input */
+$input-primary: #ffffff;
+$input-primary-border: #D9D9D9;
+
+/** header */
+$header-repo-title-primary: #000000;
+$header-title-primary: #7F8285;
+
+/** footer */
+$footer-primary: #F0F2F3;
+$footer-link: #7F8285;
+$footer-link-hover: #E00000;
+
+/** meta-info */
+$meta-primary-text: #000000;
+$meta-primary-info: rgba(0, 0, 0, 0.65);
+$meta-secondary-text: #595959;
+$meta-secondary-info: #939393;
+
+/** status */
+$status-success: #00B341;
+$status-warning: #FF9A00;
+$status-error: #FF3333; 

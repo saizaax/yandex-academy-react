@@ -1,0 +1,37 @@
+@import "../../colors.scss";
+
+.meta {
+  display: flex;
+  column-gap: 4px;
+  font-size: 13px;
+  line-height: 16px;
+  align-items: center;
+
+  svg {
+    opacity: 0.3;
+  }
+}
+
+.primary {
+  @extend .meta;
+
+  .text {
+    color: $meta-primary-text;
+  }
+
+  .info {
+    color: $meta-primary-info;
+  }
+}
+
+.secondary {
+  @extend .meta;
+
+  .text {
+    color: $meta-secondary-text;
+  }
+
+  .info {
+    color: $meta-secondary-info;
+  }
+}
