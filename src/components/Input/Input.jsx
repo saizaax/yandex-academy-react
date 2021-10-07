@@ -23,10 +23,12 @@ function Input(props) {
   return (
     <div className={inputVariant}>
       <label>
-        <p>
-          {label}
-          {isRequired ? <span>*</span> : null}
-        </p>
+        {label ? (
+          <p>
+            {label}
+            {isRequired ? <span>*</span> : null}
+          </p>
+        ) : null}
         <div className={styles["input-container"]}>
           <input
             type={type}

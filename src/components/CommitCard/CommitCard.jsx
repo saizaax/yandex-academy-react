@@ -1,9 +1,9 @@
 import React from "react"
 import styles from "./CommitCard.module.scss"
 
-import { ReactComponent as SuccessIcon } from "../../icons/done.svg"
-import { ReactComponent as ErrorIcon } from "../../icons/fail.svg"
-import { ReactComponent as WarningIcon } from "../../icons/clock.svg"
+import successIcon from "../../icons/done.svg"
+import errorIcon from "../../icons/fail.svg"
+import warningIcon from "../../icons/clock.svg"
 
 import { ReactComponent as UserIcon } from "../../icons/user.svg"
 import { ReactComponent as CommitIcon } from "../../icons/code-commit.svg"
@@ -18,11 +18,11 @@ function CommitCard(props) {
 
   const iconVariant =
     variant === "warning" ? (
-      <WarningIcon className={styles["status-icon"]} />
+      <img className={styles.icon} src={warningIcon} alt="Warning" />
     ) : variant === "error" ? (
-      <ErrorIcon className={styles["status-icon"]} />
+      <img className={styles.icon} src={errorIcon} alt="Error" />
     ) : (
-      <SuccessIcon className={styles["status-icon"]} />
+      <img className={styles.icon} src={successIcon} alt="Success" />
     )
 
   return (
