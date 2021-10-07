@@ -9,11 +9,13 @@ import toolsIcon from "../icons/tools.svg"
 function StartScreen(props) {
   return (
     <div className="start-screen">
-      <Header title="School CI server" isSettingsButton={true} />
-      <div className="instructions">
-        <img src={toolsIcon} alt="" />
-        <p>Configure repository connection and synchronization settings</p>
-        <Button variant="primary">Open settings</Button>
+      <div className="wrapper">
+        <Header title="School CI server" isSettingsButton={true} />
+        <div className="instructions">
+          <img src={toolsIcon} alt="" />
+          <p>Configure repository connection and synchronization settings</p>
+          <Button variant="primary">Open settings</Button>
+        </div>
       </div>
       <Footer />
     </div>
