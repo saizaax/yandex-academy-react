@@ -9,6 +9,7 @@ function Button(props) {
     "secondary",
     "disabled",
     "transparent",
+    "regular",
     "icon-regular",
     "icon-small",
   ]

@@ -75,19 +75,22 @@ $button-border-size: 2px;
   }
 }
 
-/** buttons with icon */
-.icon-button {
+.regular {
   @extend .secondary;
 
   min-width: fit-content;
   line-height: 28px;
-  padding: 0 8px;
+  padding: 0 13px;
 }
 
+/** buttons with icon */
 .icon-regular {
-  @extend .icon-button;
+  @extend .regular;
+
+  padding: 0 13px 0 8px;
 
   @media screen and (max-width: 768px) {
+    padding: 8px;
     font-size: 0;
     column-gap: 0;
     height: 32px;
@@ -97,7 +100,9 @@ $button-border-size: 2px;
 }
 
 .icon-small {
-  @extend .icon-button;
+  @extend .regular;
+
+  padding: 8px;
   height: 32px;
   width: 32px;
 }
