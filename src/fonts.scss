@@ -1,77 +1,32 @@
-/** Yandex Sans Text */
 @font-face {
-  font-family: "Yandex Sans Text";
-  src: url("./fonts/YandexSans/YandexSansText-Regular.eot");
-  src: local("Yandex Sans Text Regular"), local("YandexSansText-Regular"),
-    url("./fonts/YandexSans/YandexSansText-Regular.eot?#iefix")
-      format("embedded-opentype"),
-    url("./fonts/YandexSans/YandexSansText-Regular.woff2") format("woff2"),
-    url("./fonts/YandexSans/YandexSansText-Regular.woff") format("woff"),
-    url("./fonts/YandexSans/YandexSansText-Regular.ttf") format("truetype");
-  font-weight: normal;
+  font-family: "YS Text";
+  font-weight: 400;
   font-style: normal;
+  font-stretch: normal;
+  src: url(//yastatic.net/s3/home/fonts/ys/1/text-regular.woff2) format("woff2"),
+    url(//yastatic.net/s3/home/fonts/ys/1/text-regular.woff) format("woff");
 }
 
 @font-face {
-  font-family: "Yandex Sans Text";
-  src: url("./fonts/YandexSans/YandexSansText-Bold.eot");
-  src: local("Yandex Sans Text Bold"), local("YandexSansText-Bold"),
-    url("./fonts/YandexSans/YandexSansText-Bold.eot?#iefix")
-      format("embedded-opentype"),
-    url("./fonts/YandexSans/YandexSansText-Bold.woff2") format("woff2"),
-    url("./fonts/YandexSans/YandexSansText-Bold.woff") format("woff"),
-    url("./fonts/YandexSans/YandexSansText-Bold.ttf") format("truetype");
-  font-weight: bold;
-  font-style: normal;
-}
-
-@font-face {
-  font-family: "Yandex Sans Text";
-  src: url("./fonts/YandexSans/YandexSansText-Medium.eot");
-  src: local("Yandex Sans Text Medium"), local("YandexSansText-Medium"),
-    url("./fonts/YandexSans/YandexSansText-Medium.eot?#iefix")
-      format("embedded-opentype"),
-    url("./fonts/YandexSans/YandexSansText-Medium.woff2") format("woff2"),
-    url("./fonts/YandexSans/YandexSansText-Medium.woff") format("woff"),
-    url("./fonts/YandexSans/YandexSansText-Medium.ttf") format("truetype");
+  font-family: "YS Text";
   font-weight: 500;
   font-style: normal;
-}
-
-/** Hack */
-@font-face {
-  font-family: "Hack";
-  src: url("./fonts/Hack/Hack-Regular.eot");
-  src: local("Hack Regular"), local("Hack-Regular"),
-    url("./fonts/Hack/Hack-Regular.eot?#iefix") format("embedded-opentype"),
-    url("./fonts/Hack/Hack-Regular.woff2") format("woff2"),
-    url("./fonts/Hack/Hack-Regular.woff") format("woff"),
-    url("./fonts/Hack/Hack-Regular.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
+  font-stretch: normal;
+  src: url(//yastatic.net/s3/home/fonts/ys/1/text-medium.woff2) format("woff2"),
+    url(//yastatic.net/s3/home/fonts/ys/1/text-medium.woff) format("woff");
 }
 
 @font-face {
-  font-family: "Hack";
-  src: url("./fonts/Hack/Hack-Bold.eot");
-  src: local("Hack Bold"), local("Hack-Bold"),
-    url("./fonts/Hack/Hack-Bold.woff2") format("woff2"),
-    url("./fonts/Hack/Hack-Bold.woff") format("woff"),
-    url("./fonts/Hack/Hack-Bold.ttf") format("truetype");
-  font-weight: bold;
+  font-family: "YS Text";
+  font-weight: 700;
   font-style: normal;
+  font-stretch: normal;
+  src: url(//yastatic.net/s3/home/fonts/ys/1/text-bold.woff2) format("woff2"),
+    url(//yastatic.net/s3/home/fonts/ys/1/text-bold.woff) format("woff");
 }
-
-/** Helvetica Neue */
-@font-face {
-  font-family: "Helvetica Neue";
-  src: url("./fonts/HelveticaNeue/HelveticaNeue.eot");
-  src: local("Helvetica Neue"),
-    url("./fonts/HelveticaNeue/HelveticaNeue.eot?#iefix")
-      format("embedded-opentype"),
-    url("./fonts/HelveticaNeue/HelveticaNeue.woff2") format("woff2"),
-    url("./fonts/HelveticaNeue/HelveticaNeue.woff") format("woff"),
-    url("./fonts/HelveticaNeue/HelveticaNeue.ttf") format("truetype");
-  font-weight: normal;
-  font-style: normal;
+.font_loaded body {
+  font-family: "YS Text", "Helvetica Neue", Arial, sans-serif;
+  -webkit-font-feature-settings: "liga", "kern";
+  -moz-font-feature-settings: "liga", "kern";
+  font-feature-settings: "liga", "kern";
 }
