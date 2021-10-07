@@ -31,13 +31,13 @@ function Input(props) {
         ) : null}
         <div className={styles["input-container"]}>
           <input
-            type={type}
+            type={type ? type : "text"}
             placeholder={placeholder}
             onChange={(e) => setValue(e.target.value)}
             value={value}
             defaultValue={defaultValue}
           />
-          {variant !== "small" ? (
+          {variant !== "small" && value ? (
             <ClearIcon onClick={() => setValue("")} />
           ) : null}
         </div>
