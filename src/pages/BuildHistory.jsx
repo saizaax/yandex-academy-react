@@ -9,11 +9,22 @@ import BuildModal from "../components/BuildModal/BuildModal"
 
 import { StateContext } from "../repository/StateContext"
 
+import mockData from "../mockdata.json"
+import { BUILDS_PER_PAGE } from "../config"
+
 function BuildHistory(props) {
   const [state, dispatch] = useContext(StateContext)
 
   useEffect(() => {
-    dispatch({ type: "fetchBuilds" })
+    const data = [
+      ...mockData.builds.slice(0, state.builds.page * BUILDS_PER_PAGE),
+    ]
+    dispatch({ type: "fetchBuilds", payload: data })
+
+    const isMore =
+      state.builds.page * BUILDS_PER_PAGE >= mockData.builds.length ? false : true
+
+    dispatch("updateIsMore", isMore)
   }, [dispatch, state.builds.page])
 
   return (

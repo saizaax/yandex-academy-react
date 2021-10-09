@@ -47,6 +47,10 @@ function Settings(props) {
     setIsButtonActive(true)
 
     if (result) {
+      sessionStorage.setItem(
+        "settings",
+        JSON.stringify({ repository, command, branch, syncInterval })
+      )
       dispatch({
         type: "updateSettings",
         payload: { repository, command, branch, syncInterval },

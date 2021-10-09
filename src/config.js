@@ -1,0 +1,1 @@
+export const BUILDS_PER_PAGE = 9
