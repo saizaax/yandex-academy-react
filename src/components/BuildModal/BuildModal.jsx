@@ -1,13 +1,16 @@
-import React, { useContext, useState } from "react"
+import React, { useState } from "react"
+import { useDispatch } from "react-redux"
 import styles from "./BuildModal.module.scss"
+
 import Input from "../Input/Input"
 import Button from "../Button/Button"
-import { StateContext } from "../../repository/StateContext"
+
+import * as actions from "../../repository/actions"
 
 function BuildModal(props) {
   const [commitHash, setCommitHash] = useState("")
 
-  const [, dispatch] = useContext(StateContext)
+  const dispatch = useDispatch()
 
   return (
     <div className={styles.modal}>
@@ -22,7 +25,7 @@ function BuildModal(props) {
         <Button variant="primary">Run build</Button>
         <Button
           variant="transparent"
-          onClick={() => dispatch({ type: "switchOverlay" })}
+          onClick={() => dispatch(actions.switchOverlay())}
         >
           Cancel
         </Button>

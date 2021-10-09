@@ -1,13 +1,14 @@
 import "./styles.scss"
 import Routes from "./Routes"
 
-import { StateProvider } from "./repository/StateContext"
+import { Provider } from "react-redux"
+import store from "./repository/reducer"
 
 function App() {
   return (
-    <StateProvider>
+    <Provider store={store}>
       <Routes />
-    </StateProvider>
+    </Provider>
   )
 }
 

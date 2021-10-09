@@ -1,4 +1,5 @@
-import React, { useContext, useEffect } from "react"
+import React, { useEffect } from "react"
+import { useSelector, useDispatch } from "react-redux"
 
 import RepoHeader from "../components/RepoHeader/RepoHeader"
 import CommitCard from "../components/CommitCard/CommitCard"
@@ -7,33 +8,36 @@ import Footer from "../components/Footer/Footer"
 import ShadowOverlay from "../components/ShadowOverlay/ShadowOverlay"
 import BuildModal from "../components/BuildModal/BuildModal"
 
-import { StateContext } from "../repository/StateContext"
-
 import mockData from "../mockdata.json"
 import { BUILDS_PER_PAGE } from "../config"
 
+import * as actions from "../repository/actions"
+
 function BuildHistory(props) {
-  const [state, dispatch] = useContext(StateContext)
+  const dispatch = useDispatch()
+  const store = useSelector((store) => store)
 
   useEffect(() => {
     const data = [
-      ...mockData.builds.slice(0, state.builds.page * BUILDS_PER_PAGE),
+      ...mockData.builds.slice(0, store.builds.page * BUILDS_PER_PAGE),
     ]
-    dispatch({ type: "fetchBuilds", payload: data })
+    dispatch(actions.fetchBuilds(data))
 
     const isMore =
-      state.builds.page * BUILDS_PER_PAGE >= mockData.builds.length ? false : true
+      store.builds.page * BUILDS_PER_PAGE >= mockData.builds.length
+        ? false
+        : true
 
-    dispatch("updateIsMore", isMore)
-  }, [dispatch, state.builds.page])
+    dispatch(actions.updateIsMore(isMore))
+  }, [dispatch, store.builds.page])
 
   return (
     <>
       <div className="build-history">
         <div className="wrapper">
-          <RepoHeader title={state.settings.repository} />
+          <RepoHeader title={store.settings.repository} />
           <div className="commits">
-            {state.builds.history.map((build) => (
+            {store.builds.history.map((build) => (
               <CommitCard
                 key={build.hashPreview}
                 variant={build.status}
@@ -46,10 +50,10 @@ function BuildHistory(props) {
                 time={build.syncMinutes}
               />
             ))}
-            {state.builds.isMore ? (
+            {store.builds.isMore ? (
               <Button
                 variant="regular"
-                onClick={() => dispatch({ type: "incrementBuildsPage" })}
+                onClick={() => dispatch(actions.incrementBuildsPage())}
               >
                 Show more
               </Button>
@@ -58,7 +62,7 @@ function BuildHistory(props) {
         </div>
         <Footer />
       </div>
-      {state.environment.overlay ? (
+      {store.environment.overlay ? (
         <ShadowOverlay modal={<BuildModal />} />
       ) : null}
     </>

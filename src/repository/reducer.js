@@ -1,8 +1,13 @@
-export const reducer = (state, action) => {
-  switch (action.type) {
-    case "updateSettings":
-      return { ...state, settings: action.payload }
-    case "switchOverlay":
+import { createStore } from "redux"
+import { initialState } from "./state"
+
+const reducer = (state = initialState, action) => {
+  const { type, payload } = action
+
+  switch (type) {
+    case "UPDATE_SETTINGS":
+      return { ...state, settings: payload }
+    case "SWITCH_OVERLAY":
       return {
         ...state,
         environment: {
@@ -10,15 +15,15 @@ export const reducer = (state, action) => {
           overlay: !state.environment.overlay,
         },
       }
-    case "fetchBuilds":
+    case "FETCH_BUILDS":
       return {
         ...state,
         builds: {
           ...state.builds,
-          history: action.payload,
+          history: payload,
         },
       }
-    case "incrementBuildsPage":
+    case "INCREMENT_BUILDS_PAGE":
       return {
         ...state,
         builds: {
@@ -26,15 +31,25 @@ export const reducer = (state, action) => {
           page: state.builds.page + 1,
         },
       }
-    case "updateIsMore":
+    case "SET_BUILDS_PAGE":
       return {
         ...state,
         builds: {
           ...state.builds,
-          isMore: action.payload,
+          page: payload,
+        },
+      }
+    case "UPDATE_IS_MORE":
+      return {
+        ...state,
+        builds: {
+          ...state.builds,
+          isMore: payload,
         },
       }
     default:
       return state
   }
 }
+
+export default createStore(reducer)

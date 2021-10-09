@@ -1,22 +1,25 @@
-import React, { useContext, useEffect, useState } from "react"
+import React, { useEffect, useState } from "react"
+import { useSelector, useDispatch } from "react-redux"
 import { useHistory } from "react-router"
 
 import Button from "../components/Button/Button"
 import Header from "../components/Header/Header"
 import Footer from "../components/Footer/Footer"
 import Input from "../components/Input/Input"
-
-import { StateContext } from "../repository/StateContext"
 import ErrorCard from "../components/ErrorCard/ErrorCard"
+
+import * as actions from "../repository/actions"
 
 function Settings(props) {
   const history = useHistory()
-  const [state, dispatch] = useContext(StateContext)
+  const dispatch = useDispatch()
 
-  const [repository, setRepository] = useState(state.settings.repository)
-  const [command, setCommand] = useState(state.settings.command)
-  const [branch, setBranch] = useState(state.settings.branch)
-  const [syncInterval, setSyncInterval] = useState(state.settings.syncInterval)
+  const settings = useSelector((store) => store.settings)
+
+  const [repository, setRepository] = useState(settings.repository)
+  const [command, setCommand] = useState(settings.command)
+  const [branch, setBranch] = useState(settings.branch)
+  const [syncInterval, setSyncInterval] = useState(settings.syncInterval)
 
   const [isRepoValid, setIsRepoValid] = useState(repository ? true : false)
   const [isCommandValid, setIsCommandValid] = useState(command ? true : false)
@@ -41,20 +44,18 @@ function Settings(props) {
     setIsButtonActive(false)
 
     const result = await new Promise((res) => {
-      setTimeout(() => res(Math.random() < 0.5), 2500)
+      setTimeout(() => res(Math.random() > 0.4), 1500)
     })
 
     setIsButtonActive(true)
 
     if (result) {
-      sessionStorage.setItem(
-        "settings",
-        JSON.stringify({ repository, command, branch, syncInterval })
-      )
-      dispatch({
-        type: "updateSettings",
-        payload: { repository, command, branch, syncInterval },
-      })
+      const data = { repository, command, branch, syncInterval }
+
+      sessionStorage.setItem("settings", JSON.stringify(data))
+      dispatch(actions.updateSettings(data))
+      dispatch(actions.setBuildPage(1))
+
       history.push("/")
     } else {
       setIsError(true)

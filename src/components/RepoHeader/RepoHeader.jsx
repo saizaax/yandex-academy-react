@@ -1,15 +1,19 @@
-import React, { useContext } from "react"
+import React from "react"
+import { useDispatch } from "react-redux"
+import { Link } from "react-router-dom"
+
 import Button from "../Button/Button"
 import styles from "./RepoHeader.module.scss"
+
 import { ReactComponent as SettingsIcon } from "../../icons/settings.svg"
 import { ReactComponent as RunIcon } from "../../icons/play.svg"
-import { Link } from "react-router-dom"
-import { StateContext } from "../../repository/StateContext"
+
+import * as actions from "../../repository/actions"
 
 function RepoHeader(props) {
   const { title } = props
 
-  const [, dispatch] = useContext(StateContext)
+  const dispatch = useDispatch()
 
   return (
     <header className={styles.header}>
@@ -18,11 +22,7 @@ function RepoHeader(props) {
         <Button
           variant="icon-regular"
           icon={<RunIcon />}
-          onClick={() =>
-            dispatch({
-              type: "switchOverlay",
-            })
-          }
+          onClick={() => dispatch(actions.switchOverlay())}
         >
           Run build
         </Button>

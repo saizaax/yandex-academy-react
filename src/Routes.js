@@ -1,4 +1,4 @@
-import { useContext } from "react"
+import { useSelector } from "react-redux"
 import "./styles.scss"
 
 import {
@@ -12,16 +12,14 @@ import BuildHistory from "./pages/BuildHistory"
 import Settings from "./pages/Settings"
 import StartScreen from "./pages/StartScreen"
 
-import { StateContext } from "./repository/StateContext"
-
 function App() {
-  const [state] = useContext(StateContext)
+  const settings = useSelector((store) => store.settings)
 
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          {state.settings.repository ? <BuildHistory /> : <StartScreen />}
+          {settings.repository ? <BuildHistory /> : <StartScreen />}
         </Route>
         <Route exact path="/settings">
           <Settings />
