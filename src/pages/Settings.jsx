@@ -41,7 +41,7 @@ function Settings(props) {
     setIsButtonActive(false)
 
     const result = await new Promise((res) => {
-      setTimeout(() => res(Math.random() < 0.5), 2500)
+      setTimeout(() => res(Math.random() < 0.4), 1500)
     })
 
     setIsButtonActive(true)
@@ -55,6 +55,11 @@ function Settings(props) {
         type: "updateSettings",
         payload: { repository, command, branch, syncInterval },
       })
+      dispatch({
+        type: "setBuildsPage",
+        payload: 1,
+      })
+
       history.push("/")
     } else {
       setIsError(true)

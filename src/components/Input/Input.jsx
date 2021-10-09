@@ -58,7 +58,12 @@ function Input(props) {
             defaultValue={defaultValue}
           />
           {variant !== "small" && value ? (
-            <ClearIcon onClick={() => setValue("")} />
+            <ClearIcon
+              onClick={() => {
+                setValue("")
+                validate("")
+              }}
+            />
           ) : null}
         </div>
         {labelValue}

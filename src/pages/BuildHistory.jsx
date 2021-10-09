@@ -22,9 +22,11 @@ function BuildHistory(props) {
     dispatch({ type: "fetchBuilds", payload: data })
 
     const isMore =
-      state.builds.page * BUILDS_PER_PAGE >= mockData.builds.length ? false : true
+      state.builds.page * BUILDS_PER_PAGE >= mockData.builds.length
+        ? false
+        : true
 
-    dispatch("updateIsMore", isMore)
+    dispatch({ type: "updateIsMore", payload: isMore })
   }, [dispatch, state.builds.page])
 
   return (

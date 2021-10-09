@@ -26,6 +26,14 @@ export const reducer = (state, action) => {
           page: state.builds.page + 1,
         },
       }
+    case "setBuildsPage":
+      return {
+        ...state,
+        builds: {
+          ...state.builds,
+          page: action.payload,
+        },
+      }
     case "updateIsMore":
       return {
         ...state,
