@@ -1,113 +1,56 @@
-import React from "react"
+import React, { useContext, useEffect } from "react"
 
 import RepoHeader from "../components/RepoHeader/RepoHeader"
 import CommitCard from "../components/CommitCard/CommitCard"
 import Button from "../components/Button/Button"
 import Footer from "../components/Footer/Footer"
+import ShadowOverlay from "../components/ShadowOverlay/ShadowOverlay"
+import BuildModal from "../components/BuildModal/BuildModal"
+
+import { StateContext } from "../repository/StateContext"
 
 function BuildHistory(props) {
-  return (
-    <div className="build-history">
-      <div className="wrapper">
-        <RepoHeader title="philip1967/my-awesome-repo" />
-        <div className="commits">
-          
-          <CommitCard
-            variant="success"
-            number={1337}
-            title="add documentation for postgres scaler"
-            author="Philip Kirkorov"
-            branch="master"
-            commit="9c9f0b9"
-            date="21 янв, 03:06"
-            time="1 ч 20 мин"
-          />
-          <CommitCard
-            variant="error"
-            number={1337}
-            title="add documentation for postgres scaler"
-            author="Philip Kirkorov"
-            branch="master"
-            commit="9c9f0b9"
-            date="21 янв, 03:06"
-            time="1 ч 20 мин"
-          />
-          <CommitCard
-            variant="success"
-            number={1337}
-            title="add documentation for postgres scaler"
-            author="Philip Kirkorov"
-            branch="master"
-            commit="9c9f0b9"
-            date="21 янв, 03:06"
-            time="1 ч 20 мин"
-          />
-          <CommitCard
-            variant="warning"
-            number={1337}
-            title="add documentation for postgres scaler"
-            author="Philip Kirkorov"
-            branch="master"
-            commit="9c9f0b9"
-            date="21 янв, 03:06"
-            time="1 ч 20 мин"
-          />
-          <CommitCard
-            variant="success"
-            number={1337}
-            title="add documentation for postgres scaler"
-            author="Philip Kirkorov"
-            branch="master"
-            commit="9c9f0b9"
-            date="21 янв, 03:06"
-            time="1 ч 20 мин"
-          />
-          <CommitCard
-            variant="error"
-            number={1337}
-            title="add documentation for postgres scaler"
-            author="Philip Kirkorov"
-            branch="master"
-            commit="9c9f0b9"
-            date="21 янв, 03:06"
-            time="1 ч 20 мин"
-          />
-          <CommitCard
-            variant="success"
-            number={1337}
-            title="add documentation for postgres scaler"
-            author="Philip Kirkorov"
-            branch="master"
-            commit="9c9f0b9"
-            date="21 янв, 03:06"
-            time="1 ч 20 мин"
-          />
-          <CommitCard
-            variant="success"
-            number={1337}
-            title="add documentation for postgres scaler"
-            author="Philip Kirkorov"
-            branch="master"
-            commit="9c9f0b9"
-            date="21 янв, 03:06"
-            time="1 ч 20 мин"
-          />
-          <CommitCard
-            variant="success"
-            number={1337}
-            title="add documentation for postgres scaler"
-            author="Philip Kirkorov"
-            branch="master"
-            commit="9c9f0b9"
-            date="21 янв, 03:06"
-            time="1 ч 20 мин"
-          />
+  const [state, dispatch] = useContext(StateContext)
 
-          <Button variant="regular">Show more</Button>
+  useEffect(() => {
+    dispatch({ type: "fetchBuilds" })
+  }, [dispatch, state.builds.page])
+
+  return (
+    <>
+      <div className="build-history">
+        <div className="wrapper">
+          <RepoHeader title={state.settings.repository} />
+          <div className="commits">
+            {state.builds.history.map((build) => (
+              <CommitCard
+                key={build.hashPreview}
+                variant={build.status}
+                number={build.id}
+                title={build.comment}
+                author={build.author}
+                branch={build.branch}
+                commit={build.hashPreview}
+                date={build.timestamp}
+                time={build.syncMinutes}
+              />
+            ))}
+            {state.builds.isMore ? (
+              <Button
+                variant="regular"
+                onClick={() => dispatch({ type: "incrementBuildsPage" })}
+              >
+                Show more
+              </Button>
+            ) : null}
+          </div>
         </div>
+        <Footer />
       </div>
-      <Footer />
-    </div>
+      {state.environment.overlay ? (
+        <ShadowOverlay modal={<BuildModal />} />
+      ) : null}
+    </>
   )
 }
 

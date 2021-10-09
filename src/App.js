@@ -1,16 +1,13 @@
 import "./styles.scss"
+import Routes from "./Routes"
 
-import BuildHistory from "./pages/BuildHistory"
-// import Settings from "./pages/Settings"
-// import StartScreen from "./pages/StartScreen"
+import { StateProvider } from "./repository/StateContext"
 
 function App() {
   return (
-    <>
-      {/* <StartScreen /> */}
-      {/* <Settings /> */}
-      <BuildHistory />
-    </>
+    <StateProvider>
+      <Routes />
+    </StateProvider>
   )
 }
 

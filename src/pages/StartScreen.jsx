@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 import Button from "../components/Button/Button"
 import Header from "../components/Header/Header"
@@ -14,7 +15,7 @@ function StartScreen(props) {
         <div className="instructions">
           <img src={toolsIcon} alt="" />
           <p>Configure repository connection and synchronization settings</p>
-          <Button variant="primary">Open settings</Button>
+          <Link to="/settings"><Button variant="primary">Open settings</Button></Link>
         </div>
       </div>
       <Footer />

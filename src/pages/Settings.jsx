@@ -1,15 +1,63 @@
-import React, { useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
+import { useHistory } from "react-router"
 
 import Button from "../components/Button/Button"
 import Header from "../components/Header/Header"
 import Footer from "../components/Footer/Footer"
 import Input from "../components/Input/Input"
 
+import { StateContext } from "../repository/StateContext"
+import ErrorCard from "../components/ErrorCard/ErrorCard"
+
 function Settings(props) {
-  const [repository, setRepository] = useState("")
-  const [command, setCommand] = useState("npm ci && npm run build")
-  const [branch, setBranch] = useState("master |")
-  const [syncInterval, setSyncInterval] = useState(10)
+  const history = useHistory()
+  const [state, dispatch] = useContext(StateContext)
+
+  const [repository, setRepository] = useState(state.settings.repository)
+  const [command, setCommand] = useState(state.settings.command)
+  const [branch, setBranch] = useState(state.settings.branch)
+  const [syncInterval, setSyncInterval] = useState(state.settings.syncInterval)
+
+  const [isRepoValid, setIsRepoValid] = useState(repository ? true : false)
+  const [isCommandValid, setIsCommandValid] = useState(command ? true : false)
+  const [isBranchValid, setIsBranchValid] = useState(branch ? true : false)
+  const [isIntervalValid, setIsIntervalValid] = useState(
+    syncInterval ? true : false
+  )
+  const [isFormValid, setIsFormValid] = useState(
+    isRepoValid && isCommandValid && isBranchValid && isIntervalValid
+  )
+
+  const [isButtonActive, setIsButtonActive] = useState(true)
+  const [isError, setIsError] = useState(false)
+
+  useEffect(() => {
+    if (isRepoValid && isCommandValid && isBranchValid && isIntervalValid) {
+      setIsFormValid(true)
+    } else {
+      setIsFormValid(false)
+    }
+  }, [isRepoValid, isCommandValid, isBranchValid, isIntervalValid])
+
+  const cloneRepo = async () => {
+    setIsButtonActive(false)
+
+    const result = await new Promise((res) => {
+      setTimeout(() => res(Math.random() < 0.5), 2500)
+    })
+
+    setIsButtonActive(true)
+
+    if (result) {
+      dispatch({
+        type: "updateSettings",
+        payload: { repository, command, branch, syncInterval },
+      })
+      history.push("/")
+    } else {
+      setIsError(true)
+    }
+  }
 
   return (
     <div className="settings">
@@ -26,6 +74,8 @@ function Settings(props) {
               isRequired={true}
               value={repository}
               setValue={setRepository}
+              validateRegex={/^([a-zA-Z0-9]{1,39}\/[a-zA-Z0-9-]+(\s+)?)$/}
+              setValid={setIsRepoValid}
             />
 
             <Input
@@ -34,6 +84,8 @@ function Settings(props) {
               isRequired={true}
               value={command}
               setValue={setCommand}
+              validateRegex={/^([^0-9,]*)$/}
+              setValid={setIsCommandValid}
             />
 
             <Input
@@ -41,6 +93,8 @@ function Settings(props) {
               placeholder="master |"
               value={branch}
               setValue={setBranch}
+              validateRegex={/^(([a-zA-z0-9]+\s?\|?\s?)+)$/}
+              setValid={setIsBranchValid}
             />
 
             <Input
@@ -51,12 +105,30 @@ function Settings(props) {
               placeholder="10"
               value={syncInterval}
               setValue={setSyncInterval}
+              validateRegex={/^(\d){1,3}$/}
+              setValid={setIsIntervalValid}
             />
           </div>
 
+          {isError ? (
+            <ErrorCard>При клонировании репозитория произошла ошибка</ErrorCard>
+          ) : null}
+
           <div className="buttons">
-            <Button variant="primary">Save</Button>
-            <Button variant="secondary">Cancel</Button>
+            <Button
+              variant={isButtonActive && isFormValid ? "primary" : "disabled"}
+              onClick={() => cloneRepo()}
+            >
+              Save
+            </Button>
+            <Button
+              variant={isButtonActive ? "secondary" : "disabled"}
+              onClick={() =>
+                history.action !== "POP" ? history.goBack() : history.push("/")
+              }
+            >
+              Cancel
+            </Button>
           </div>
         </div>
       </div>
