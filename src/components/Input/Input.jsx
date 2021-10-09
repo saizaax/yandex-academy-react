@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 import styles from "./Input.module.scss"
 import { ReactComponent as ClearIcon } from "../../icons/clear.svg"
 
@@ -13,12 +13,32 @@ function Input(props) {
     defaultValue,
     value,
     setValue,
+    validateRegex,
+    setValid,
   } = props
 
-  const variants = ["default", "small"]
-  const inputVariant = variants.includes(variant)
+  const variants = ["default", "small", "default-invalid", "small-invalid"]
+  const defaultVariant = variants.includes(variant)
     ? styles[variant]
     : styles.default
+
+  const errorVariant = variants.includes(variant)
+    ? styles[`${variant}-invalid`]
+    : styles["default-invalid"]
+
+  const [inputVariant, setInputVariant] = useState(defaultVariant)
+
+  const validate = (str) => {
+    if (validateRegex) {
+      const isValid = validateRegex.test(str)
+
+      if (!isValid) setInputVariant(errorVariant)
+      else setInputVariant(defaultVariant)
+
+      if (setValid) setValid(isValid)
+    }
+    return str
+  }
 
   return (
     <div className={inputVariant}>
@@ -33,7 +53,7 @@ function Input(props) {
           <input
             type={type ? type : "text"}
             placeholder={placeholder}
-            onChange={(e) => setValue(e.target.value)}
+            onChange={(e) => setValue(validate(e.target.value))}
             value={value}
             defaultValue={defaultValue}
           />

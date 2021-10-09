@@ -16,22 +16,28 @@ $button-border-size: 2px;
   justify-content: center;
   column-gap: 5px;
   min-width: 80px;
+
+  box-shadow: inset 0 0 0 $button-border-size transparent;
+
+  &:hover {
+    cursor: pointer;
+  }
 }
 
 .primary {
   @extend .button-base;
 
   background: $button-primary;
-  border: $button-border-size solid $button-primary;
+  box-shadow: inset 0 0 0 $button-border-size $button-primary;
 
   &:hover {
     background: $button-primary-hover;
-    border-color: $button-primary-hover;
+    box-shadow: inset 0 0 0 $button-border-size $button-primary-hover;
   }
 
   &:focus {
     background: $button-primary-focus;
-    border-color: $button-border-primary-focus;
+    box-shadow: inset 0 0 0 $button-border-size $button-border-primary-focus;
   }
 }
 
@@ -39,39 +45,42 @@ $button-border-size: 2px;
   @extend .button-base;
 
   background: $button-secondary;
-  border: $button-border-size solid $button-secondary;
+  box-shadow: inset 0 0 0 $button-border-size $button-secondary;
 
   &:hover {
     background: $button-secondary-hover;
-    border-color: $button-secondary-hover;
+    box-shadow: inset 0 0 0 $button-border-size $button-secondary-hover;
   }
 
   &:focus {
     background: $button-secondary-focus;
-    border-color: $button-border-secondary-focus;
+    box-shadow: inset 0 0 0 $button-border-size $button-border-secondary-focus;
   }
 }
 
 .disabled {
   @extend .button-base;
-
+  
   background: $button-disabled;
   color: $button-text-disabled;
-  border: $button-border-size solid $button-disabled;
+
+  &:hover {
+    cursor: initial;
+  }
 }
 
 .transparent {
   @extend .button-base;
 
   background: transparent;
-  border: 1px solid $button-transparent-border;
+  box-shadow: inset 0 0 0 1px $button-transparent-border;
 
   &:hover {
-    border-color: $button-transparent-border-hover;
+    box-shadow: inset 0 0 0 1px $button-transparent-border-hover;
   }
 
   &:focus {
-    border-color: $button-transparent-border-focus;
+    box-shadow: inset 0 0 0 1px $button-transparent-border-focus;
   }
 }
 
@@ -93,8 +102,8 @@ $button-border-size: 2px;
     padding: 8px;
     font-size: 0;
     column-gap: 0;
-    height: 32px;
-    width: 32px;
+    height: 28px;
+    width: 28px;
     justify-content: center;
   }
 }
@@ -103,6 +112,6 @@ $button-border-size: 2px;
   @extend .regular;
 
   padding: 8px;
-  height: 32px;
-  width: 32px;
+  height: 28px;
+  width: 28px;
 }

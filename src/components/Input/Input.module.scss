@@ -35,10 +35,15 @@ $input-border-size: 2px;
   }
 
   input {
+    outline: none;
     background-color: $primary-white;
     padding: 11px 13px;
     border: $input-border-size solid $input-primary-border;
     border-radius: 4px;
+
+    &:focus {
+      border-color: $primary-black;
+    }
 
     &::-webkit-outer-spin-button,
     &::-webkit-inner-spin-button {
@@ -85,5 +90,21 @@ $input-border-size: 2px;
     max-width: 52px;
     width: 100%;
     text-align: right;
+  }
+}
+
+.default-invalid {
+  @extend .default;
+
+  input {
+    border-color: $primary-red;
+  }
+}
+
+.small-invalid {
+  @extend .small;
+
+  input {
+    border-color: $primary-red;
   }
 }

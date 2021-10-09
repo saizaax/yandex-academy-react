@@ -1,0 +1,13 @@
+@import "../../colors.scss";
+
+.error {
+  font-size: 13px;
+  line-height: 18px;
+  color: $primary-red;
+  padding: 10px 15px;
+  border-radius: 4px;
+  background: rgba($color: $primary-red, $alpha: 0.1);
+  max-width: 474px;
+  box-sizing: border-box;
+  margin-bottom: 24px;
+}

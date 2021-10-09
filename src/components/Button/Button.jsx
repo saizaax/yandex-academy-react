@@ -18,7 +18,10 @@ function Button(props) {
     : styles.primary
 
   return (
-    <button className={buttonVariant} onClick={onClick ? onClick : null}>
+    <button
+      className={buttonVariant}
+      onClick={onClick && variant !== "disabled" ? onClick : null}
+    >
       {icon}
       {text}
     </button>

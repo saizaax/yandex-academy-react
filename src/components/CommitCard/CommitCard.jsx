@@ -13,6 +13,9 @@ import { ReactComponent as CalendarIcon } from "../../icons/calendar.svg"
 import Status from "../Status/Status"
 import Meta from "../Meta/Meta"
 
+import { formatHoursMinutes } from "../../utils/formatHoursMinutes"
+import { formatBuildDate } from "../../utils/formatBuildDate"
+
 function CommitCard(props) {
   const { number, title, variant, branch, author, commit, date, time } = props
 
@@ -43,8 +46,8 @@ function CommitCard(props) {
         </div>
       </div>
       <div className={styles.time}>
-        <Meta variant="secondary" text={date} icon={<CalendarIcon />} />
-        <Meta variant="secondary" text={time} icon={<ClockIcon />} />
+        <Meta variant="secondary" text={formatBuildDate(date)} icon={<CalendarIcon />} />
+        <Meta variant="secondary" text={formatHoursMinutes(time)} icon={<ClockIcon />} />
       </div>
     </div>
   )

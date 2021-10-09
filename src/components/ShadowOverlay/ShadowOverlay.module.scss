@@ -1,0 +1,13 @@
+@import "../../variables.scss";
+@import "../../colors.scss";
+
+.shadow {
+  position: fixed;
+  height: 100vh;
+  width: 100vw;
+  z-index: $overlay-z-index;
+  background: $shadow-primary;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
