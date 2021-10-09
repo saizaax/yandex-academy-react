@@ -20,10 +20,8 @@ function Settings(props) {
 
   const [isRepoValid, setIsRepoValid] = useState(repository ? true : false)
   const [isCommandValid, setIsCommandValid] = useState(command ? true : false)
-  const [isBranchValid, setIsBranchValid] = useState(branch ? true : false)
-  const [isIntervalValid, setIsIntervalValid] = useState(
-    syncInterval ? true : false
-  )
+  const [isBranchValid, setIsBranchValid] = useState(true)
+  const [isIntervalValid, setIsIntervalValid] = useState(true)
   const [isFormValid, setIsFormValid] = useState(
     isRepoValid && isCommandValid && isBranchValid && isIntervalValid
   )
@@ -93,7 +91,7 @@ function Settings(props) {
               placeholder="master |"
               value={branch}
               setValue={setBranch}
-              validateRegex={/^(([a-zA-z0-9]+\s?\|?\s?)+)$/}
+              validateRegex={/^(([a-zA-z0-9]+\s?\|?\s?)+)$|^$|\s+/}
               setValid={setIsBranchValid}
             />
 
@@ -105,7 +103,7 @@ function Settings(props) {
               placeholder="10"
               value={syncInterval}
               setValue={setSyncInterval}
-              validateRegex={/^(\d){1,3}$/}
+              validateRegex={/^[+]?\d{1,3}([.]\d{1,3})?$|^$|\s+/}
               setValid={setIsIntervalValid}
             />
           </div>
