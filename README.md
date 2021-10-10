@@ -48,3 +48,7 @@ Open `http://localhost:3000` in web-browser
 `/` — **Start page** (if no settings configured), otherwise **Builds-History page**
 
 `/settings` — **Settings page**
+<br/>
+<br/>
+### 🚩 Comments
+`Error on the settings page occurs with a Math.random probability of up to 40%`
