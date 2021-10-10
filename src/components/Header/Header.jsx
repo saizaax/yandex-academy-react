@@ -1,8 +1,9 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import Link from "next/link"
 import Button from "../Button/Button"
 import styles from "./Header.module.scss"
-import { ReactComponent as SettingsIcon } from "../../icons/settings.svg"
+import SettingsIcon from "../../icons/settings.svg"
+import ButtonNext from "../ButtonNext/ButtonNext"
 
 function Header(props) {
   const { title, isSettingsButton } = props
@@ -11,10 +12,10 @@ function Header(props) {
     <header className={styles.header}>
       <h3>{title}</h3>
       {isSettingsButton ? (
-        <Link to="/settings">
-          <Button variant="icon-regular" icon={<SettingsIcon />}>
+        <Link href="/settings">
+          <ButtonNext variant="icon-regular" icon={<SettingsIcon />}>
             Settings
-          </Button>
+          </ButtonNext>
         </Link>
       ) : null}
     </header>

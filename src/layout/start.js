@@ -1,21 +1,23 @@
 import React from "react"
-import { Link } from "react-router-dom"
+import Link from "next/link"
 
-import Button from "../components/Button/Button"
+import ButtonNext from "../components/ButtonNext/ButtonNext"
 import Header from "../components/Header/Header"
 import Footer from "../components/Footer/Footer"
 
-import toolsIcon from "../icons/tools.svg"
+import ToolsIcon from "../icons/tools.svg"
 
-function StartScreen(props) {
+function Start(props) {
   return (
     <div className="start-screen">
       <div className="wrapper">
         <Header title="School CI server" isSettingsButton={true} />
         <div className="instructions">
-          <img src={toolsIcon} alt="" />
+          <ToolsIcon />
           <p>Configure repository connection and synchronization settings</p>
-          <Link to="/settings"><Button variant="primary">Open settings</Button></Link>
+          <Link href="/settings">
+            <ButtonNext variant="primary">Open settings</ButtonNext>
+          </Link>
         </div>
       </div>
       <Footer />
@@ -23,4 +25,4 @@ function StartScreen(props) {
   )
 }
 
-export default StartScreen
+export default Start

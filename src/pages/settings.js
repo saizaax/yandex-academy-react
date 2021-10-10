@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react"
 import { useSelector, useDispatch } from "react-redux"
-import { useHistory } from "react-router"
+import { useRouter } from "next/router"
 
 import Button from "../components/Button/Button"
 import Header from "../components/Header/Header"
@@ -11,7 +11,7 @@ import ErrorCard from "../components/ErrorCard/ErrorCard"
 import * as actions from "../repository/actions"
 
 function Settings(props) {
-  const history = useHistory()
+  const history = useRouter()
   const dispatch = useDispatch()
 
   const settings = useSelector((store) => store.settings)
@@ -51,8 +51,7 @@ function Settings(props) {
 
     if (result) {
       const data = { repository, command, branch, syncInterval }
-
-      sessionStorage.setItem("settings", JSON.stringify(data))
+      
       dispatch(actions.updateSettings(data))
       dispatch(actions.setBuildPage(1))
 
@@ -80,7 +79,7 @@ function Settings(props) {
               validateRegex={/^([a-zA-Z0-9]{1,39}\/[a-zA-Z0-9-]+(\s+)?)$/}
               setValid={setIsRepoValid}
             />
-
+            
             <Input
               label="Build command"
               placeholder="npm ci && npm run build"
@@ -126,9 +125,7 @@ function Settings(props) {
             </Button>
             <Button
               variant={isButtonActive ? "secondary" : "disabled"}
-              onClick={() =>
-                history.action !== "POP" ? history.goBack() : history.push("/")
-              }
+              onClick={() => history.push("/")}
             >
               Cancel
             </Button>

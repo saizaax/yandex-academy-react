@@ -1,14 +1,15 @@
 import React from "react"
 import { useDispatch } from "react-redux"
-import { Link } from "react-router-dom"
+import Link from "next/link"
 
 import Button from "../Button/Button"
 import styles from "./RepoHeader.module.scss"
 
-import { ReactComponent as SettingsIcon } from "../../icons/settings.svg"
-import { ReactComponent as RunIcon } from "../../icons/play.svg"
+import SettingsIcon from "../../icons/settings.svg"
+import RunIcon from "../../icons/play.svg"
 
 import * as actions from "../../repository/actions"
+import ButtonNext from "../ButtonNext/ButtonNext"
 
 function RepoHeader(props) {
   const { title } = props
@@ -26,8 +27,8 @@ function RepoHeader(props) {
         >
           Run build
         </Button>
-        <Link to="/settings">
-          <Button variant="icon-small" icon={<SettingsIcon />} />
+        <Link href="/settings">
+          <ButtonNext variant="icon-small" icon={<SettingsIcon />} />
         </Link>
       </div>
     </header>

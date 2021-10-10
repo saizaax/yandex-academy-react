@@ -1,6 +1,6 @@
 import React, { useState } from "react"
 import styles from "./Input.module.scss"
-import { ReactComponent as ClearIcon } from "../../icons/clear.svg"
+import ClearIcon from "../../icons/clear.svg"
 
 function Input(props) {
   const {

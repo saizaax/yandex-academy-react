@@ -1,5 +1,5 @@
 import { format } from "date-fns"
-import { ru } from "date-fns/esm/locale"
+import { ru } from "date-fns/locale"
 
 export const formatBuildDate = (timestamp) => {
   const date = new Date(timestamp)

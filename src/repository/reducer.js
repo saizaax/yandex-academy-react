@@ -1,4 +1,3 @@
-import { createStore } from "redux"
 import { initialState } from "./state"
 
 const reducer = (state = initialState, action) => {
@@ -52,4 +51,4 @@ const reducer = (state = initialState, action) => {
   }
 }
 
-export default createStore(reducer)
+export default reducer

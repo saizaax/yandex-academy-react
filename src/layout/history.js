@@ -13,7 +13,7 @@ import { BUILDS_PER_PAGE } from "../config"
 
 import * as actions from "../repository/actions"
 
-function BuildHistory(props) {
+function History(props) {
   const dispatch = useDispatch()
   const store = useSelector((store) => store)
 
@@ -69,4 +69,4 @@ function BuildHistory(props) {
   )
 }
 
-export default BuildHistory
+export default History
